@@ -7,14 +7,18 @@ const aside = document.querySelector(".product-detail")
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 menuBurger.addEventListener('click', toggleMobileMenu);
-menuCarrito.addEventListener("click", toggleCarrito);
+menuCarrito.addEventListener("click", toggleCarritoAside);
 
 function toggleDesktopMenu(){
-    desktopMenu.classList.toggle("inactive")
+    desktopMenu.classList.toggle("inactive");
+    aside.classList.add("inactive");
 }
 function toggleMobileMenu(){
     mobileMenu.classList.toggle("inactive");
+    aside.classList.add("inactive");
 }
-function toggleCarrito(){
+function toggleCarritoAside(){
     aside.classList.toggle("inactive");
+    desktopMenu.classList.add("inactive");
+    mobileMenu.classList.add("inactive");
 }
