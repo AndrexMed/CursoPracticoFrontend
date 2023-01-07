@@ -4,24 +4,41 @@ const menuCarrito = document.querySelector(".navbar-shopping-cart");
 const desktopMenu = document.querySelector(".desktop-menu");
 const mobileMenu = document.querySelector(".mobile-menu");
 const  shoppingCartContainer = document.querySelector("#shoppingCartContainer");
-const cardsContainer = document.querySelector(".cards-container")
+const cardsContainer = document.querySelector(".cards-container");
+const productDetailContainer = document.querySelector("#productDetail");
+const productDetailCloseIcon = document.querySelector(".product-detail-close");
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 menuBurger.addEventListener('click', toggleMobileMenu);
 menuCarrito.addEventListener("click", toggleCarrito);
+productDetailCloseIcon.addEventListener("click", closeDetailProduct);
 
 function toggleDesktopMenu() {
     desktopMenu.classList.toggle("inactive");
     shoppingCartContainer.classList.add("inactive");
+    productDetailContainer.classList.add("inactive");
 }
 function toggleMobileMenu() {
     mobileMenu.classList.toggle("inactive");
     shoppingCartContainer.classList.add("inactive");
+    productDetailContainer.classList.add("inactive");
 }
 function toggleCarrito() {
     shoppingCartContainer.classList.toggle("inactive");
     desktopMenu.classList.add("inactive");
     mobileMenu.classList.add("inactive");
+    productDetailContainer.classList.add("inactive");
+}
+
+function openDetailProduct(){
+    productDetailContainer.classList.remove("inactive");
+    desktopMenu.classList.add("inactive");
+    shoppingCartContainer.classList.add("inactive");
+    mobileMenu.classList.add("inactive");
+}
+
+function closeDetailProduct(){
+    productDetailContainer.classList.add("inactive");
 }
 
 const productArray = [];
@@ -44,6 +61,48 @@ productArray.push({
     image: "imgs/suculentas/Burrito1.jpg"
 });
 
+productArray.push({
+    name: "Suculenta 4",
+    price: "$320.000",
+    image: "imgs/suculentas/Burrito2.jpg"
+});
+
+productArray.push({
+    name: "Suculenta 5",
+    price: "$20.000",
+    image: "imgs/suculentas/Corpuscularia1.jpg"
+});
+
+productArray.push({
+    name: "Suculenta 6",
+    price: "$1000",
+    image: "imgs/suculentas/Corpuscularia2.jpg"
+});
+
+productArray.push({
+    name: "Suculenta 7",
+    price: "$243.000",
+    image: "imgs/suculentas/Crassula_Muscosa1.jpg"
+});
+
+productArray.push({
+    name: "Suculenta 8",
+    price: "$10.000",
+    image: "imgs/suculentas/Crassula_Muscosa2.jpg"
+});
+
+productArray.push({
+    name: "Suculenta 9",
+    price: "$60.000",
+    image: "imgs/suculentas/Portulacaria1.jpg"
+});
+
+productArray.push({
+    name: "Suculenta 10",
+    price: "$7.000",
+    image: "imgs/suculentas/Portulacaria2.jpg"
+});
+
 function mostrarProductos(Arreglo){
     for (product of Arreglo) {
         const productCard = document.createElement("div");
@@ -52,7 +111,7 @@ function mostrarProductos(Arreglo){
         // product = {name,price,image} -> product.image
         const ProductImg = document.createElement("img");
         ProductImg.setAttribute("src", product.image);
-    
+        ProductImg.addEventListener("click", openDetailProduct);
     
         const productInfo = document.createElement("div");
         productInfo.classList.add("product-info");
